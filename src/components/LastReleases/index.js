@@ -1,4 +1,5 @@
 import { books } from './lastReleasesData.js';
+import { Title } from '../Title/index.js';
 import styled from 'styled-components';
 
 const LastReleasesContainer = styled.section`
@@ -6,17 +7,7 @@ const LastReleasesContainer = styled.section`
     padding-bottom: 20px;
     display: flex;
     flex-direction: column;
-`
-
-const Title = styled.h2`
-    width: 100%;
-    padding: 30px 0;
-    background-color: #FFF;
-    color: #EB9B00;
-    font-size: 36px;
-    text-align: center;
-    margin: 0;
-`
+`;
 
 const NewBooksContainer = styled.div`
     margin-top: 30px;
@@ -25,11 +16,15 @@ const NewBooksContainer = styled.div`
     justify-content: center;
     cursor: pointer;
     gap: 20px;
-`
+`;
 
 function LastReleases(){
     return (
         <LastReleasesContainer>
+            <Title 
+                color="#EB9B00" 
+                fontSize="36px" 
+            >LAST RELEASES</Title>
             <Title>LAST RELEASES</Title>
             <NewBooksContainer>
                 { books.map(book => (
