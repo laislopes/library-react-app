@@ -1,5 +1,7 @@
 import { books } from './lastReleasesData.js';
 import { Title } from '../Title/index.js';
+import RecommendationCard from '../RecommendationCard/index.js';
+import bookImage from '../../assets/design-patterns-book.jpg';
 import styled from 'styled-components';
 
 const LastReleasesContainer = styled.section`
@@ -25,12 +27,17 @@ function LastReleases(){
                 color="#EB9B00" 
                 fontSize="36px" 
             >LAST RELEASES</Title>
-            <Title>LAST RELEASES</Title>
             <NewBooksContainer>
                 { books.map(book => (
                     <img src={book.src}/>
                 ))}
             </NewBooksContainer>
+            <RecommendationCard
+                title="Maybe this is interesting for you..."
+                subtitle="Angular 11"
+                description="Building an Integrated Application with Google Platform"
+                image={bookImage}
+            />
         </LastReleasesContainer>
     );
 }
