@@ -1,7 +1,8 @@
 import Input from "../Input";
 import styled from 'styled-components';
-import { useState } from "react";
-import { books } from './searchData.js';
+import { useEffect, useState } from "react";
+import { getBooks } from "../../services/books";
+import { postFavorite } from "../../services/favorites";
 
 const SearchContainer = styled.section`
     background-image: linear-gradient(90deg, #002F52 35%, #326589 165%);
@@ -40,10 +41,25 @@ const Result = styled.div`
     &:hover {
         border: 1px solid white;
     }
-`
+`;
 
 function Search() {
     const [searchedBooks, setSearchedBooks] = useState([]);
+    const [books, setBooks] = useState([]);
+
+    useEffect(() => { 
+        fetchBooks();
+    }, []);
+
+    async function fetchBooks() {
+        const response = await getBooks();
+        setBooks(response);
+    };
+
+    async function insertFavorite(id){
+        await postFavorite(id);
+        alert(`Book ${id} was added!`)
+    };
 
     return (
         <SearchContainer>
@@ -58,7 +74,7 @@ function Search() {
                 }}
             />
             { searchedBooks.map(book => (
-                <Result>
+                <Result onClick={() => insertFavorite(book.id)}>
                     <img src={book.src}/>
                     <p>{book.name}</p>
                 </Result>
