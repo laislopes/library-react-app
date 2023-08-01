@@ -8,8 +8,7 @@ const SearchContainer = styled.section`
     background-image: linear-gradient(90deg, #002F52 35%, #326589 165%);
     color: #FFF;
     text-align: center;
-    padding: 85px 0;
-    height: 270px;
+    padding: 5px 0;
     width: 100%;
 `;
 
@@ -69,7 +68,7 @@ function Search() {
                 placeholder="Write your next reading" 
                 onBlur={event => {
                     const typedText = event.target.value;
-                    const searchResult = books.filter(book => book.name.includes(typedText));
+                    const searchResult = books.filter(book => book.name.toLowerCase().includes(typedText.toLowerCase()));
                     setSearchedBooks(searchResult);
                 }}
             />
